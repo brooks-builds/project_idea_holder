@@ -6,7 +6,7 @@ A project idea holder where we can add ideas for what to build on the stream, an
 
 -   [ ] hello world app
     -   [x] building hello world
-    -   [ ] deploy to Heroku
+    -   [x] deploy to Heroku
     -   [ ] Get CI going
 -   [ ] Auth
     -   [ ] Unauthenticated landing page
