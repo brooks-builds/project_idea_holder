@@ -3,3 +3,4 @@ php:
   - 7.2.19
 install:
   - composer install
+  - php artisan key:generate
