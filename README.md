@@ -4,10 +4,10 @@ A project idea holder where we can add ideas for what to build on the stream, an
 
 ## Plan
 
--   [ ] hello world app
+-   [x] hello world app
     -   [x] building hello world
     -   [x] deploy to Heroku
-    -   [ ] Get CI going
+    -   [x] Get CI going
 -   [ ] Auth
     -   [ ] Unauthenticated landing page
     -   [ ] login / register account page

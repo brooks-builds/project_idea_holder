@@ -7,6 +7,8 @@
     <title>Project Idea Holder</title>
 </head>
 <body>
-    <h1>Project Idea Holder</h1>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </body>
 </html>
