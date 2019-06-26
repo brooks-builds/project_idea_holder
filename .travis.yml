@@ -2,5 +2,6 @@ language: php
 php:
   - 7.2.19
 install:
+  - cp .env.example .env
   - composer install
   - php artisan key:generate
