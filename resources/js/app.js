@@ -1,16 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import LandingPage from "./components/LandingPageComponent";
+import LandingPage from "./components/LandingPage-component";
+import TopMenu from "./components/TopMenu-component";
 
-const routes = [
-    {
-        path: "/",
-        component: LandingPage
-    }
-];
+Vue.use(VueRouter);
 
-const router = new VueRouter({ routes });
+Vue.component("top-menu", TopMenu);
+
+const routes = [{ path: "/", component: LandingPage }];
+
+const router = new VueRouter({
+    routes
+});
 
 const app = new Vue({
-    router
-}).$mount("#app");
+    router,
+    el: "#app"
+});

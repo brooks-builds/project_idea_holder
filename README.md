@@ -9,13 +9,16 @@ A project idea holder where we can add ideas for what to build on the stream, an
     -   [x] deploy to Heroku
     -   [x] Get CI going
 -   [ ] Auth
-    -   [ ] Unauthenticated landing page
+    -   [x] Unauthenticated landing page
     -   [ ] login / register account page
         -   [ ] username / password
         -   [ ] github
     -   [ ] my account page
         -   [ ] CRUD user account
 -   [ ] Landing page
+    -   [ ] Information about the app
+    -   [ ] Links to the different streamers projects
+-   [ ] my projects
     -   [ ] List projects
     -   [ ] Vote on projects
     -   [ ] Share project with Twitter
