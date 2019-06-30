@@ -10,7 +10,10 @@ A project idea holder where we can add ideas for what to build on the stream, an
     -   [x] Get CI going
 -   [ ] Auth
     -   [x] Unauthenticated landing page
-    -   [ ] login / register account page
+    -   [ ] register account page
+        -   [x] username / password
+        -   [ ] github
+    -   [ ] login page
         -   [ ] username / password
         -   [ ] github
     -   [ ] my account page
