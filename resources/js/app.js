@@ -1,11 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Vuex from "vuex";
 import LandingPage from "./components/LandingPage-component";
 import TopMenu from "./components/TopMenu-component";
 import CreateAccount from "./components/CreateAccount";
+import { store } from "./store";
 import "./config";
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 Vue.component("top-menu", TopMenu);
 
@@ -24,5 +27,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     router,
-    el: "#app"
+    el: "#app",
+    store: new Vuex.Store(store)
 });

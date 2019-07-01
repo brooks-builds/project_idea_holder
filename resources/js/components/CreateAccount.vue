@@ -9,19 +9,19 @@
             <label for="email">Email</label>
           </div>
           <div>
-            <input type="email" id="email" v-model="user.email" />
+            <input type="email" id="email" v-model="user.email" required />
           </div>
           <div>
             <label for="name">Display Name</label>
           </div>
           <div>
-            <input type="text" id="name" v-model="user.name" />
+            <input type="text" id="name" v-model="user.name" required />
           </div>
           <div>
             <label for="password">Password</label>
           </div>
           <div>
-            <input type="password" id="password" v-model="user.password" />
+            <input type="password" id="password" v-model="user.password" required />
           </div>
           <div>
             <button>Create Account</button>
@@ -42,9 +42,9 @@ export default {
   data() {
     return {
       user: {
-        email: "",
-        name: "",
-        password: ""
+        email: null,
+        name: null,
+        password: null
       }
     };
   },
@@ -57,9 +57,11 @@ export default {
       };
 
       axios
-        .post("/register", user)
+        .post("/api/users", user)
         .then(response => {
-          console.log(response);
+          const { email, id, name } = response.data;
+          this.$store.commit("setUser", { email, id, name });
+          this.$router.push("/");
         })
         .catch(error => {
           console.error(error);

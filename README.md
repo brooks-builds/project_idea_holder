@@ -11,7 +11,7 @@ A project idea holder where we can add ideas for what to build on the stream, an
 -   [ ] Auth
     -   [x] Unauthenticated landing page
     -   [ ] register account page
-        -   [x] username / password
+        -   [-] username / password
         -   [ ] github
     -   [ ] login page
         -   [ ] username / password
