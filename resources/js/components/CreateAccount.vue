@@ -1,6 +1,10 @@
 <template>
   <section>
     <h1>Create Account</h1>
+    <div class="error" v-if="errors.hasError">
+      <h3>Error creating account</h3>
+      <p v-for="(message, index) in errors.messages" v-bind:key="index">{{message}}</p>
+    </div>
     <main>
       <section>
         <h2>With Email / Password</h2>
@@ -9,19 +13,37 @@
             <label for="email">Email</label>
           </div>
           <div>
-            <input type="email" id="email" v-model="user.email" required />
+            <input
+              type="email"
+              id="email"
+              v-model="user.email"
+              required
+              v-bind:class="{'border-error': errors.fields.email}"
+            />
           </div>
           <div>
             <label for="name">Display Name</label>
           </div>
           <div>
-            <input type="text" id="name" v-model="user.name" required />
+            <input
+              type="text"
+              id="name"
+              v-model="user.name"
+              required
+              v-bind:class="{'border-error': errors.fields.name}"
+            />
           </div>
           <div>
             <label for="password">Password</label>
           </div>
           <div>
-            <input type="password" id="password" v-model="user.password" required />
+            <input
+              type="password"
+              id="password"
+              v-model="user.password"
+              required
+              v-bind:class="{'border-error': errors.fields.password}"
+            />
           </div>
           <div>
             <button>Create Account</button>
@@ -45,6 +67,11 @@ export default {
         email: null,
         name: null,
         password: null
+      },
+      errors: {
+        hasError: false,
+        messages: [],
+        fields: {}
       }
     };
   },
@@ -56,15 +83,28 @@ export default {
         password: this.user.password
       };
 
+      this.errors.hasError = false;
+      this.errors.messages = [];
+      this.errors.fields = {};
+
       axios
         .post("/api/users", user)
         .then(response => {
+          console.log("response.data");
           const { email, id, name } = response.data;
           this.$store.commit("setUser", { email, id, name });
           this.$router.push("/");
         })
         .catch(error => {
-          console.error(error);
+          this.errors.hasError = true;
+
+          for (let field in error.response.data.errors) {
+            error.response.data.errors[field].forEach(errorMessage =>
+              this.errors.messages.push(errorMessage)
+            );
+
+            this.errors.fields[field] = true;
+          }
         });
     }
   }
@@ -98,5 +138,20 @@ form button {
 
 form button:hover {
   border: groove;
+}
+
+.error {
+  background-color: lightcoral;
+  margin: 0 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.border-error {
+  border: 2px solid red;
 }
 </style>

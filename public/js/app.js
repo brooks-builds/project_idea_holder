@@ -1877,6 +1877,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1885,6 +1907,11 @@ __webpack_require__.r(__webpack_exports__);
         email: null,
         name: null,
         password: null
+      },
+      errors: {
+        hasError: false,
+        messages: [],
+        fields: {}
       }
     };
   },
@@ -1897,7 +1924,11 @@ __webpack_require__.r(__webpack_exports__);
         name: this.user.name,
         password: this.user.password
       };
+      this.errors.hasError = false;
+      this.errors.messages = [];
+      this.errors.fields = {};
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/users", user).then(function (response) {
+        console.log("response.data");
         var _response$data = response.data,
             email = _response$data.email,
             id = _response$data.id,
@@ -1911,7 +1942,14 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$router.push("/");
       })["catch"](function (error) {
-        console.error(error);
+        _this.errors.hasError = true;
+
+        for (var field in error.response.data.errors) {
+          error.response.data.errors[field].forEach(function (errorMessage) {
+            return _this.errors.messages.push(errorMessage);
+          });
+          _this.errors.fields[field] = true;
+        }
       });
     }
   }
@@ -1976,7 +2014,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nmain[data-v-516998b6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: space-evenly;\n          justify-content: space-evenly;\n}\nh1[data-v-516998b6] {\n  text-align: center;\n}\nform input[data-v-516998b6] {\n  width: 100%;\n  border-radius: 3px;\n  height: 1.5rem;\n  margin-bottom: 0.5rem;\n}\nform button[data-v-516998b6] {\n  background-color: darkcyan;\n  border: none;\n  border-radius: 5px;\n  padding: 0.5rem 1rem;\n  color: white;\n}\nform button[data-v-516998b6]:hover {\n  border: groove;\n}\n", ""]);
+exports.push([module.i, "\nmain[data-v-516998b6] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: space-evenly;\n          justify-content: space-evenly;\n}\nh1[data-v-516998b6] {\n  text-align: center;\n}\nform input[data-v-516998b6] {\n  width: 100%;\n  border-radius: 3px;\n  height: 1.5rem;\n  margin-bottom: 0.5rem;\n}\nform button[data-v-516998b6] {\n  background-color: darkcyan;\n  border: none;\n  border-radius: 5px;\n  padding: 0.5rem 1rem;\n  color: white;\n}\nform button[data-v-516998b6]:hover {\n  border: groove;\n}\n.error[data-v-516998b6] {\n  background-color: lightcoral;\n  margin: 0 1rem;\n  padding: 0.5rem;\n  border-radius: 5px;\n}\n.hidden[data-v-516998b6] {\n  visibility: hidden;\n}\n.border-error[data-v-516998b6] {\n  border: 2px solid red;\n}\n", ""]);
 
 // exports
 
@@ -3215,6 +3253,21 @@ var render = function() {
   return _c("section", [
     _c("h1", [_vm._v("Create Account")]),
     _vm._v(" "),
+    _vm.errors.hasError
+      ? _c(
+          "div",
+          { staticClass: "error" },
+          [
+            _c("h3", [_vm._v("Error creating account")]),
+            _vm._v(" "),
+            _vm._l(_vm.errors.messages, function(message, index) {
+              return _c("p", { key: index }, [_vm._v(_vm._s(message))])
+            })
+          ],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("main", [
       _c("section", [
         _c("h2", [_vm._v("With Email / Password")]),
@@ -3232,6 +3285,7 @@ var render = function() {
                   expression: "user.email"
                 }
               ],
+              class: { "border-error": _vm.errors.fields.email },
               attrs: { type: "email", id: "email", required: "" },
               domProps: { value: _vm.user.email },
               on: {
@@ -3257,6 +3311,7 @@ var render = function() {
                   expression: "user.name"
                 }
               ],
+              class: { "border-error": _vm.errors.fields.name },
               attrs: { type: "text", id: "name", required: "" },
               domProps: { value: _vm.user.name },
               on: {
@@ -3282,6 +3337,7 @@ var render = function() {
                   expression: "user.password"
                 }
               ],
+              class: { "border-error": _vm.errors.fields.password },
               attrs: { type: "password", id: "password", required: "" },
               domProps: { value: _vm.user.password },
               on: {
