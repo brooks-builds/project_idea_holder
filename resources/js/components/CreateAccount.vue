@@ -46,7 +46,7 @@
             />
           </div>
           <div>
-            <button>Create Account</button>
+            <button data-testid="create-account">Create Account</button>
           </div>
         </form>
       </section>

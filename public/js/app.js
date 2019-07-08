@@ -1998,6 +1998,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -3388,7 +3392,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("button", [_vm._v("Create Account")])])
+    return _c("div", [
+      _c("button", { attrs: { "data-testid": "create-account" } }, [
+        _vm._v("Create Account")
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -3465,9 +3473,16 @@ var render = function() {
       "nav",
       [
         !_vm.$store.state.user.name
-          ? _c("router-link", { attrs: { to: "/users/create" } }, [
-              _vm._v("Create Account")
-            ])
+          ? _c(
+              "router-link",
+              {
+                attrs: {
+                  to: "/users/create",
+                  "data-testid": "create-account-link"
+                }
+              },
+              [_vm._v("Create Account")]
+            )
           : _vm._e(),
         _vm._v(" "),
         !_vm.$store.state.user.name
