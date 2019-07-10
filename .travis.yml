@@ -1,8 +1,12 @@
 language: php
 php:
   - 7.2.19
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database project_idea_holder_test;' -U postgres
 install:
-  - cp .env.example .env
+  - cp .env.test .env
   - composer install
   - php artisan key:generate
 deploy:

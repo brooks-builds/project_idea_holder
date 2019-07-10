@@ -9,15 +9,17 @@ describe("Creating an account", () => {
             .url()
             .should("include", "/users/create")
             .get("#email")
-            .type("testemail@brookzerker.com")
+            .type("testemail3@brookzerker.com")
             .get("#name")
             .type("Test User")
             .get("#password")
-            .type("1234qwfp")
-            .get('[data-testid="create-account"]')
-            .click()
+            .type("1234qwfp{enter}")
             .wait("@createUser")
             .its("status")
-            .should("eq", 201);
+            .should("eq", 201)
+            .url()
+            .should("include", "/")
+            .get('span[data-testid="logged-in-message"]')
+            .should("contain", "Logged in as Test User");
     });
 });

@@ -10,7 +10,10 @@
         data-testid="create-account-link"
       >Create Account</router-link>
       <router-link to="/users/login" v-if="!$store.state.user.name">Login</router-link>
-      <span v-if="$store.state.user.name">Logged in as {{$store.state.user.name}}</span>
+      <span
+        v-if="$store.state.user.name"
+        data-testid="logged-in-message"
+      >Logged in as {{$store.state.user.name}}</span>
     </nav>
   </section>
 </template>

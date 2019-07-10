@@ -8,7 +8,7 @@
     <main>
       <section>
         <h2>With Email / Password</h2>
-        <form v-on:submit="createAccount">
+        <form v-on:submit.prevent="createAccount">
           <div>
             <label for="email">Email</label>
           </div>
@@ -76,7 +76,7 @@ export default {
     };
   },
   methods: {
-    createAccount() {
+    createAccount(event) {
       const user = {
         email: this.user.email,
         name: this.user.name,

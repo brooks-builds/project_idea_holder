@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    createAccount: function createAccount() {
+    createAccount: function createAccount(event) {
       var _this = this;
 
       var user = {
@@ -1985,6 +1985,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3276,87 +3279,98 @@ var render = function() {
       _c("section", [
         _c("h2", [_vm._v("With Email / Password")]),
         _vm._v(" "),
-        _c("form", { on: { submit: _vm.createAccount } }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.user.email,
-                  expression: "user.email"
-                }
-              ],
-              class: { "border-error": _vm.errors.fields.email },
-              attrs: { type: "email", id: "email", required: "" },
-              domProps: { value: _vm.user.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.user, "email", $event.target.value)
-                }
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.createAccount($event)
               }
-            })
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.user.name,
-                  expression: "user.name"
-                }
-              ],
-              class: { "border-error": _vm.errors.fields.name },
-              attrs: { type: "text", id: "name", required: "" },
-              domProps: { value: _vm.user.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            }
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.email,
+                    expression: "user.email"
                   }
-                  _vm.$set(_vm.user, "name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.user.password,
-                  expression: "user.password"
-                }
-              ],
-              class: { "border-error": _vm.errors.fields.password },
-              attrs: { type: "password", id: "password", required: "" },
-              domProps: { value: _vm.user.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                ],
+                class: { "border-error": _vm.errors.fields.email },
+                attrs: { type: "email", id: "email", required: "" },
+                domProps: { value: _vm.user.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.user, "email", $event.target.value)
                   }
-                  _vm.$set(_vm.user, "password", $event.target.value)
                 }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _vm._m(3)
-        ])
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.name,
+                    expression: "user.name"
+                  }
+                ],
+                class: { "border-error": _vm.errors.fields.name },
+                attrs: { type: "text", id: "name", required: "" },
+                domProps: { value: _vm.user.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.user, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user.password,
+                    expression: "user.password"
+                  }
+                ],
+                class: { "border-error": _vm.errors.fields.password },
+                attrs: { type: "password", id: "password", required: "" },
+                domProps: { value: _vm.user.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.user, "password", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(3)
+          ]
+        )
       ]),
       _vm._v(" "),
       _vm._m(4)
@@ -3492,7 +3506,7 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.$store.state.user.name
-          ? _c("span", [
+          ? _c("span", { attrs: { "data-testid": "logged-in-message" } }, [
               _vm._v("Logged in as " + _vm._s(_vm.$store.state.user.name))
             ])
           : _vm._e()
