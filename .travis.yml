@@ -5,9 +5,10 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database project_idea_holder_test;' -U postgres
+  - npm install
   - npm run dev
 script:
-  - npx cypress run
+  - npm run cypress
 install:
   - cp .env.test .env
   - composer install
