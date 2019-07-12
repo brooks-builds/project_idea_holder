@@ -5,13 +5,15 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database project_idea_holder_test;' -U postgres
-  - sudo apt update && sudo apt install libgconf-2-4
-  - npm install
   - npm run dev
+  - cp .env.test .env
+  - php artisan serve &
+  - npx wait-on http://localhost:8000
 script:
   - npm run cypress
 install:
-  - cp .env.test .env
+  - sudo apt update && sudo apt install libgconf-2-4
+  - npm install
   - composer install
   - php artisan key:generate
 deploy:
