@@ -5,6 +5,7 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database project_idea_holder_test;' -U postgres
+  - sudo apt update && sudo apt install libgconf-2-4
   - npm install
   - npm run dev
 script:
