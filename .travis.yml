@@ -16,6 +16,7 @@ before_script:
   - php artisan serve &
   - npx wait-on http://localhost:8000
   - cp cypress.json.test cypress.json
+  - php artisan migrate
 script:
   - npm run cypress
 deploy:
